@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -e
+
+#EXTRA#
+#DEBHELPER#
+
+[ "$1" = "remove" ] && [ -f "/etc/php5/conf.d/maxminddb.ini" ] && rm /etc/php5/conf.d/maxminddb.ini
+
+exit 0
