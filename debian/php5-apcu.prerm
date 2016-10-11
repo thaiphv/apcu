@@ -2,9 +2,6 @@
 
 set -e
 
-#EXTRA#
-#DEBHELPER#
-
-[ "$1" = "remove" ] && [ -f "/etc/php5/conf.d/maxminddb.ini" ] && rm /etc/php5/conf.d/maxminddb.ini
+[ "$1" = "remove" ] && [ -f "/etc/php5/conf.d/apcu.ini" ] && rm /etc/php5/conf.d/apcu.ini
 
 exit 0

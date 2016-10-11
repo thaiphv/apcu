@@ -22,7 +22,7 @@ PECL_PKG_NAME=apcu
 PECL_PKG_REALNAME=apcu
 PECL_PKG_VERSION=0.1.0
 PACKAGE_NAME=php5-apcu
-BIN_PACKAGE_NAME=php5-apcu
+BIN_PACKAGE_NAME=php$*-apcu
 PHPIZE=/usr/bin/phpize
 PHPCONFIG=/usr/bin/php-config
 EXT_DIR=$(shell $(PHPCONFIG)$* --extension-dir)
@@ -60,7 +60,7 @@ build-stamp-v4 build-stamp-v5: build-stamp-v%: build-stamp configure-stamp-v%
 	dh_testdir
 
 	# Add here commands to compile the package.
-	(cd $(SOURCE_DIR); $(MAKE); mkdir -p ../tmp/modules$*; cp modules/* ../tmp/modules$*; $(MAKE) clean)
+	($(MAKE); mkdir -p ../tmp/modules$*; cp modules/* ../tmp/modules$*; $(MAKE) clean)
 #	rm -f build-stamp-v*
 	touch $@
 
@@ -73,10 +73,8 @@ clean-v4 clean-v5: clean-v%:
 	rm -f build-stamp* configure-stamp*
 
 	# Add here commands to clean up after the build process.
-	(cd $(SOURCE_DIR); \
-	$(MAKE) clean; \
-	$(PHPIZE)$* --clean)
-	rm -rf tmp/modules$*
+	($(MAKE) clean; $(PHPIZE)$* --clean)
+	rm -rf ../tmp
 
 install-v4 install-v5: install-v%: build-v%
 	dh_testdir
@@ -94,7 +92,7 @@ install-v4 install-v5: install-v%: build-v%
 #		| sed "s/#define ZEND_MODULE_API_NO //"`; \
 #		chmod 644 debian/$(PACKAGE_NAME)/usr/lib/php4/$$VERSION/*.so'
 	mkdir -p debian/$(BIN_PACKAGE_NAME)$(EXT_DIR)
-	install -m 644 -o root -g root tmp/modules$*/$(PECL_PKG_NAME).so debian/$(BIN_PACKAGE_NAME)$(EXT_DIR)/$(PECL_PKG_NAME).so
+	install -m 644 -o root -g root ../tmp/modules$*/$(PECL_PKG_NAME).so debian/$(BIN_PACKAGE_NAME)$(EXT_DIR)/$(PECL_PKG_NAME).so
 	if [ -f "debian/$(PECL_PKG_NAME).ini" ]; then \
 		if [ "$(PHP55CONFD)" = "true" ]; then \
 			mkdir -p debian/$(BIN_PACKAGE_NAME)/etc/php$*/mods-available; \
