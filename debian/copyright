@@ -1,8 +1,8 @@
 This package was debianized by Thai Pham <tpham@freelancer.com> using pbuilder
-on Tue, 11 Aug 2015 17:27:01 +1100.
+on Tue, 11 Oct 2016 18:15:27 +1100.
 
-It was cloned from https://github.com/maxmind/MaxMind-DB-Reader-php
+It was forked from https://github.com/krakjoe/apcu
 
 License:
 
-    Apache License
+    PHP License
