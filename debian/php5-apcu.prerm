@@ -2,6 +2,6 @@
 
 set -e
 
-[ "$1" = "remove" ] && [ -f "/etc/php5/conf.d/apcu.ini" ] && rm /etc/php5/conf.d/apcu.ini
+[ "$1" = "remove" ] && php5dismod maxminddb
 
 exit 0

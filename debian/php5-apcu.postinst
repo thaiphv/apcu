@@ -2,6 +2,6 @@
 
 set -e
 
-[ "$1" = "configure" ] && [ -d "/etc/php5/conf.d" ] && cp /etc/php5/mods-available/apcu.ini /etc/php5/conf.d/
+[ "$1" = "configure" ] && php5enmod apcu
 
 exit 0
